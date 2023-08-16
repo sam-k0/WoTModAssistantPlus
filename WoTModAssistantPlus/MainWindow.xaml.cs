@@ -141,11 +141,11 @@ namespace WoTModAssistant
                 string version = (string)modobj["versions"][0]["version"]; // 0 for newest version
                 string downloadUrl = (string)modobj["versions"][0]["download_url"];
 
-                Console.WriteLine("Title: " + title);
-                Console.WriteLine("Description: " + description);
-                Console.WriteLine("Installation Guide: " + installationGuide);
-                Console.WriteLine("Version: " + version);
-                Console.WriteLine("Download URL: " + downloadUrl);
+                Debug.WriteLine("Title: " + title);
+                Debug.WriteLine("Description: " + description);
+                Debug.WriteLine("Installation Guide: " + installationGuide);
+                Debug.WriteLine("Version: " + version);
+                Debug.WriteLine("Download URL: " + downloadUrl);
 
                 // create new ModInfo object
                 ModInfo mod = new ModInfo();
@@ -204,7 +204,7 @@ namespace WoTModAssistant
                 {
                     items.Add(subdirectory);
                 }
-                Console.WriteLine(subdirectory.Replace(Settings.GetModsFolderPath() + "\\", "").Replace(".", ""));
+                Debug.WriteLine(subdirectory.Replace(Settings.GetModsFolderPath() + "\\", "").Replace(".", ""));
             }
 
             return items;
@@ -217,7 +217,7 @@ namespace WoTModAssistant
                 return;
             }
             string selectedVersionDir = e.AddedItems[0].ToString();
-            Console.WriteLine("Selected version: " + selectedVersionDir);
+            Debug.WriteLine("Selected version: " + selectedVersionDir);
 
             // Get the mods for the selected version
             ObservableCollection<ModInfo> InstalledMods = new ObservableCollection<ModInfo>();
@@ -230,13 +230,13 @@ namespace WoTModAssistant
 
             foreach (string filepath in filepaths)
             {
-                Console.WriteLine("Filename: " + filepath);
+                Debug.WriteLine("Filename: " + filepath);
                 string destinationDirectory;
                 using (ZipArchive archive = ZipFile.OpenRead(filepath))
                 {
                     // Combine the versioned folder name with the extraction directory
                     destinationDirectory= Path.Combine(Settings.GetTempExtractDir(), HashModFilename(filepath,8));
-                    //Console.WriteLine("Extracting to: " + destinationDirectory);
+                    //Debug.WriteLine("Extracting to: " + destinationDirectory);
                     // Create the directory if it doesn't exist
                     Directory.CreateDirectory(destinationDirectory);
                     archive.ExtractToDirectory(destinationDirectory);                   
@@ -289,9 +289,9 @@ namespace WoTModAssistant
             Button button = sender as Button;
             ModInfo modInfo = resolveModInfo(sender);
             string selectedVersionDir = ComboBox_Version.SelectedItem.ToString();
-            
 
-            Console.WriteLine("Toggle button clicked for " + modInfo.ModName + " Local File Name: "+modInfo.LocalFileName + " Selected: " + selectedVersionDir);
+
+            Debug.WriteLine("Toggle button clicked for " + modInfo.ModName + " Local File Name: "+modInfo.LocalFileName + " Selected: " + selectedVersionDir);
 
             modInfo.IsEnabled = !modInfo.IsEnabled;
             // Rename the modfile

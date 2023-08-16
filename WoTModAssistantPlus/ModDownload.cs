@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.IO;
 using System.IO.Compression;
+using System.Diagnostics;
 
 namespace WoTModAssistant
 {
@@ -61,13 +62,13 @@ namespace WoTModAssistant
             {
                 // Combine the versioned folder name with the extraction directory
                 string destinationDirectory = Path.Combine(extractdir, dirname);
-                Console.WriteLine("Extracting to: " + destinationDirectory);
+                Debug.WriteLine("Extracting to: " + destinationDirectory);
                 // Create the directory if it doesn't exist
                 Directory.CreateDirectory(destinationDirectory);
 
                 archive.ExtractToDirectory(destinationDirectory);
 
-                Console.WriteLine("Extraction completed.");
+                Debug.WriteLine("Extraction completed.");
             }
         }
     }
