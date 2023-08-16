@@ -4,8 +4,6 @@ on:
     branches:
       - master
 
-env:
-  PROJECT_PATH: WoTModAssistantPlus/WoTModAssistantPlus.csproj
 
 jobs:
   deploy:
@@ -20,9 +18,9 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: Restore NuGet packages
-        run: dotnet restore ${{ PROJECT_PATH }}
+        run: dotnet restore WoTModAssistantPlus/WoTModAssistantPlus.csproj
 
       - name: Build project
-        run: dotnet build ${{ PROJECT_PATH }} -c Release --no-restore
+        run: dotnet build WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --no-restore
 
-      - run: dotnet publish ${{ PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true 
+      - run: dotnet publish WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --self-contained -r win-x64 -p:PublishSingleFile=true 
