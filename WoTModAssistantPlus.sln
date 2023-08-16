@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoTModAssistantPlus", "WoTModAssistantPlus\WoTModAssistantPlus.csproj", "{14E14A93-5FD9-4981-92A8-0EE05EC45D0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14E14A93-5FD9-4981-92A8-0EE05EC45D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E14A93-5FD9-4981-92A8-0EE05EC45D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E14A93-5FD9-4981-92A8-0EE05EC45D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E14A93-5FD9-4981-92A8-0EE05EC45D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B291F1DD-18E0-4F6A-84EA-57BBC89BC97A}
+	EndGlobalSection
+EndGlobal
