@@ -22,7 +22,7 @@ jobs:
       - name: Build project
         run: dotnet build WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --no-restore
 
-      - run: dotnet publish WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --self-contained -r win-x64 -p:PublishSingleFile=true 
+      - run: dotnet publish WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --output Publish
 
       - name: Zip publish folder
         run: Compress-Archive -Path ./WoTModAssistantPlus/Publish/* -DestinationPath WoTModAssistantPlus.zip
