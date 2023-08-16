@@ -25,7 +25,7 @@ jobs:
       - run: dotnet publish WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --output Publish
 
       - name: Zip publish folder
-        run: Compress-Archive -Path ./WoTModAssistantPlus/Publish/* -DestinationPath WoTModAssistantPlus.zip
+        run: Compress-Archive -Path WoTModAssistantPlus/WoTModAssistantPlus/Publish/* -DestinationPath WoTModAssistantPlus.zip
 
       - uses: actions/upload-artifact@v2
         with:
