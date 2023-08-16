@@ -1,0 +1,28 @@
+name: "Deploy to GitHub "
+on:
+  push:
+    branches:
+      - master
+
+env:
+  PROJECT_PATH: WoTModAssistantPlus/WoTModAssistantPlus.csproj
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore NuGet packages
+        run: dotnet restore ${{ PROJECT_PATH }}
+
+      - name: Build project
+        run: dotnet build ${{ PROJECT_PATH }} -c Release --no-restore
+
+      - run: dotnet publish ${{ PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true 
