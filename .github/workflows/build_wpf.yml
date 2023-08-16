@@ -1,9 +1,8 @@
-name: "Deploy to GitHub "
+name: "Deploy to GitHub"
 on:
   push:
     branches:
       - master
-
 
 jobs:
   deploy:
@@ -24,3 +23,29 @@ jobs:
         run: dotnet build WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --no-restore
 
       - run: dotnet publish WoTModAssistantPlus/WoTModAssistantPlus.csproj -c Release --self-contained -r win-x64 -p:PublishSingleFile=true 
+
+      - name: Zip publish folder
+        run: Compress-Archive -Path ./WoTModAssistantPlus/Publish/* -DestinationPath WoTModAssistantPlus.zip
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: WoTModAssistantPlus
+          path: WoTModAssistantPlus.zip
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: WoTModAssistantPlus.zip
+          asset_name: WoTModAssistantPlus.zip
+          asset_content_type: application/zip
