@@ -100,14 +100,14 @@ namespace WoTModAssistant
             // Auswerten der Response
             string response = data.Result;
             // Print to console
-            Console.WriteLine(response);
+            Debug.WriteLine(response);
 
 
         }
 
         private void SearchRecommendedButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Search recommended button clicked");
+            Debug.WriteLine("Search recommended button clicked");
             ModWebRequest webRequester = new ModWebRequest();
             var data = Task.Run(() => webRequester.GetRecommendedMods());
             data.Wait();

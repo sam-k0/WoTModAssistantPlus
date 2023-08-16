@@ -27,12 +27,12 @@ namespace WoTModAssistant
             }
         }
 
-        public async Task<string> GetRecommendedMods( string gameversion = "167", int limit = 12) // Current gameversion is 167
+        public async Task<string> GetRecommendedMods(string gameversion = "167", int limit = 12) // Current gameversion is 167
         {
             var client = new HttpClient();
             try
             {
-                string url = API_STARTPAGE_BASE_QUERY + "?language=en&limit_recommended="+limit.ToString()+"&limit_new=1&limit_updated=1&game_version_id=" + gameversion;
+                string url = API_STARTPAGE_BASE_QUERY + $"?language=en&limit_recommended={limit.ToString()}&limit_new=1&limit_updated=1&game_version_id={gameversion}";
                 HttpResponseMessage response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
@@ -40,6 +40,40 @@ namespace WoTModAssistant
             catch (Exception)
             {
                
+                return "-1";
+            }
+        }
+
+        public async Task<string> GetNewMods(string gameversion = "167", int limit = 12) // Current gameversion is 167
+        {
+            var client = new HttpClient();
+            try
+            {
+                string url = API_STARTPAGE_BASE_QUERY + $"?language=en&limit_recommended=1&limit_new={limit.ToString()}&limit_updated=1&game_version_id={gameversion}";
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception)
+            {
+
+                return "-1";
+            }
+        }
+
+        public async Task<string> GetUpdatedMods(string gameversion = "167", int limit = 12) // Current gameversion is 167
+        {
+            var client = new HttpClient();
+            try
+            {
+                string url = API_STARTPAGE_BASE_QUERY +$"?language=en&limit_recommended=1&limit_new=1&limit_updated={limit.ToString()}&game_version_id={gameversion}";
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception)
+            {
+
                 return "-1";
             }
         }

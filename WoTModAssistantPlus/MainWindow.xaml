@@ -235,7 +235,7 @@
                                                      <Run Text="Description: " />
                                                      <Run Text="{Binding Description}" />
                                                 </TextBlock>
-                                            
+
                                             </StackPanel>
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock TextWrapping="Wrap">
@@ -250,7 +250,6 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-
                     </Border>
                 </Grid>
             </TabItem >
