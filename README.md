@@ -1,6 +1,5 @@
 # WoTModAssistantPlus
-Mod Manager for World Of Tanks PC
-
+Mod Manager for World Of Tanks PC. <br>
 - Only EU Version of the game is actively tested
 
 ## Features
@@ -20,4 +19,7 @@ Can be seen in issues
 
 # Bug Reports
 Post an issue with "Bug" label
+
+# Why "plus"?
+This version uses the new .NET Core WPF instead of .NET Framework.
 
