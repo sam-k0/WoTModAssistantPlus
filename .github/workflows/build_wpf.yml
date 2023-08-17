@@ -1,8 +1,9 @@
 name: "Deploy to GitHub"
+
 on:
   push:
-    branches:
-      - master
+    tags:
+      - "wmaplus/v*"
 
 jobs:
   deploy:
