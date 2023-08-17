@@ -39,7 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.create_release.outputs.upload_url }}
+          tag_name: Default
           release_name: ${{ steps.create_release.outputs.upload_url }}
 
       - name: Upload Release Asset
