@@ -25,11 +25,14 @@ namespace WoTModAssistant
         public ObservableCollection<ModInfo> InstalledMods { get; } = new ObservableCollection<ModInfo>();
         public ObservableCollection<ModInfo> RecommendedMods { get; } = new ObservableCollection<ModInfo>();
 
-        public GlobalSettings Settings { get; } = new GlobalSettings();
+        public GlobalSettings Settings { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();            
+            Settings = new GlobalSettings(); // Load settings
+
+            //Task<bool> isGameRunningTask = Task.Run(IsGameRunning);
 
             // Set the Mods collection as the ItemsSource for the ListView
             ListView_SearchBrowseMods.ItemsSource = Mods;
@@ -192,6 +195,12 @@ namespace WoTModAssistant
             ComboBox_Version.ItemsSource = items;
             ComboBox_Version.SelectedIndex = items.Count - 1; // Set to newest version
 
+        }
+        
+        private void SelectGameDir_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.reselectGameDirectory();
+            TB_GamePath.Text = Settings.GameInstallDir;
         }
 
         private ObservableCollection<string> GetGameVersionFolders()
@@ -380,6 +389,32 @@ namespace WoTModAssistant
 
                 return truncatedHash;
             }
+        }
+        
+
+        static async Task<bool> IsGameRunning()
+        {
+            await Task.Yield(); // Explicitly yield to the ThreadPool to run asynchronously.
+
+            foreach (Process p in Process.GetProcesses())
+            {
+                try
+                {
+                    string fileName = Path.GetFullPath(p.MainModule.FileName);
+                    if (fileName.EndsWith("WorldOfTanks.exe", StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show("Game is running. Please close the game before using mod assistant.", "Game is running", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    // Ignore
+                    continue;
+                }
+            }
+
+            return false;
         }
     }
 }

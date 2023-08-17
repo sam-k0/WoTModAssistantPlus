@@ -11,7 +11,7 @@
     <Window.Resources>
         <local:ActivateDeactivateConverter x:Key="ActivateDeactivateConverter" />
     </Window.Resources>
-        <Grid>
+    <Grid>
         <TabControl TabStripPlacement="Left">
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}">
@@ -33,13 +33,14 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="53*"/>
+                        <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <!--Search bar-->
-                    <Border  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Margin="0">
+                    <Border  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
                         <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -51,13 +52,13 @@
                             </Grid.ColumnDefinitions>
                             <!--First column upper-->
                             <Label Grid.Column="0" FontSize="18" VerticalAlignment="Center">Search:</Label>
-                            <TextBox Grid.Column="1" Width="Auto" Height="30" Margin="5"/>
+                            <TextBox Grid.Column="1" Width="Auto" Height="30" Margin="5"></TextBox>
                             <Button Grid.Column="2" Width="100" Height="30" Content="Search" Click="SearchButton_Click" />
                         </Grid>
                     </Border>
                     <!--Search bar end-->
                     <!--List of browse mods-->
-                    <Border Grid.Row="1">
+                    <Border Grid.Row="1" Grid.RowSpan="2">
                         <ListView x:Name="ListView_SearchBrowseMods">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -187,7 +188,7 @@
                             </Grid.ColumnDefinitions>
                             <!--First column upper-->
                             <Label Grid.Column="0" FontSize="18" VerticalAlignment="Center">Recommended Mods</Label>
-                            <Label Grid.Column="1" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center">Results: </Label>
+                            <Label Grid.Column="1" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center">Results:</Label>
                             <Label Grid.Column="2" Name="Label_RecommendedCnt"  FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center">0</Label>
                             <Button Grid.Column="3" Content="Search" Click="SearchRecommendedButton_Click" Margin="0,4,4,4" Padding="20,0,20,5" FontSize="18"/>
                         </Grid>
@@ -396,7 +397,7 @@
                                                      <Run Text="Description: " />
                                                      <Run Text="{Binding Description}" />
                                                 </TextBlock>
-                                                
+
                                             </StackPanel>
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock TextWrapping="Wrap">
@@ -419,7 +420,32 @@
             </TabItem>
 
             <TabItem Header="Settings" >
-                <Label>Nothing here yet</Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Search bar-->
+                    <Border  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Margin="0">
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <!--First column upper-->
+                            <Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Game Directory:</Label>
+                            <TextBox Name="TB_GamePath" Grid.Column="1" Width="Auto" Height="30" Margin="5">*Default game installation path*</TextBox>
+                            <Button Grid.Column="2" Width="100" Height="30" Content="Select New" Click="SelectGameDir_Button_Click" />
+                        </Grid>
+                    </Border>
+                </Grid>
             </TabItem>
 
         </TabControl>

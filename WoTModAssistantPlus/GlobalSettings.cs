@@ -135,5 +135,64 @@ namespace WoTModAssistant
                 Directory.Delete(subDirectory, true);
             }
         }
+
+        public void reselectGameDirectory()
+        {
+            int errcount = 1;
+            bool correct = false;
+            string newGameInstallDir = "";
+            while (true)
+            {
+                VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
+                dialog.Description = "Please select your World of Tanks installation directory";
+                dialog.UseDescriptionForTitle = true;
+
+                if (dialog.ShowDialog() == true) // Dlg result
+                {
+                    newGameInstallDir = dialog.SelectedPath;
+                    if (File.Exists(Path.Combine(newGameInstallDir, "WorldOfTanks.exe"))) // correct
+                    {
+                        correct = true;
+                        break;
+                    }
+                    else // not correct
+                    {
+                        string emojis = "";
+                        for (int i = 0; i < errcount; i++)
+                        {
+                            emojis += "💀";
+                        }
+                        errcount++;
+                        MessageBox.Show("Please select the game installation folder containing WorldOfTanks.exe " + emojis, emojis + " Warning! " + emojis, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                }
+                else
+                {
+                    correct = false;
+                    break;
+                }
+
+            }
+            if(correct)
+            {
+                GameInstallDir = newGameInstallDir;
+                Debug.WriteLine("GameInstallDir: " + GameInstallDir);
+                Dictionary<string, string> keyValuePairs = new Dictionary<string, string>
+                {
+                    { "GameInstallDir", GameInstallDir }
+                };
+                // Serialize the dictionary to JSON
+                string jsonstr = JsonConvert.SerializeObject(keyValuePairs, Formatting.Indented);
+                File.WriteAllText(Path.Combine(GetAppFolderPath(), "config.json"), jsonstr);
+            }
+            else // cancel
+            {
+                MessageBox.Show("Changes not saved. Please select the directory where WorldOfTanks.exe is.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+
+            
+        }
     }
 }
