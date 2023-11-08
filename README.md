@@ -1,4 +1,6 @@
 # WoTModAssistantPlus
+[![Build Status](https://github.com/sam-k0/WoTModAssistantPlus/actions/workflows/build_wpf.yml/badge.svg)](https://github.com/sam-k0/WoTModAssistantPlus/actions/workflows/build_wpf.yml)
+
 Mod Manager for World Of Tanks PC. <br>
 - Only EU Version of the game is actively tested
 
