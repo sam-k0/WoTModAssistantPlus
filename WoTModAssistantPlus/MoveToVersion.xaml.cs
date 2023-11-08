@@ -48,7 +48,7 @@ namespace WoTModAssistant
                 // Move the mod
                 File.Move(Path.Combine(source, modInfo.LocalFileName), Path.Combine(destination, modInfo.LocalFileName));
 
-                MessageBox.Show(string.Format("Success! Moved {0} from {1} ~> {2}", modInfo.ModName, selected.Version, currentVersion.Version));
+                MessageBox.Show(string.Format("Success! Moved {0} from {1} ~> {2}", modInfo.ModName, currentVersion.Version, selected.Version));
              }
         }
 
