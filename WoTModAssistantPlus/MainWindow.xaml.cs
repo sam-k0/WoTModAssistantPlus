@@ -42,7 +42,8 @@ namespace WoTModAssistant
         // Hyperlink click event handler
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            //Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            Clipboard.SetText(e.Uri.AbsoluteUri);
             e.Handled = true;
         }
 
